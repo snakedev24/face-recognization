@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="box-1">
+      <div class="content-holder">
+          <h2>Hello!</h2>
+         
+          <button class="button-1" onclick="signup()">Sign up</button>
+          <button class="button-2" onclick="login()">Login</button>
+      </div>
+  </div>
+
+  <!-- Forms -->
+  <div class="box-2">
+      <div class="login-form-container">
+          <h1>Login Form</h1>
+          <form action="{% url 'user_login' %}" method="post">
+            {% csrf_token %}
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                      {% if messages %}
+                          <ul class="messages">
+                              {% for message in messages %}
+                                  <div class="alert alert-danger" role="alert">
+                                      {{ message }}
+                                  </div>
+                              {% endfor %}
+                          </ul>
+                      {% endif %}
+                                            
+                        <input type="text" name="username" placeholder="Username" class="input-field">
+                        <br><br>
+                        <input type="password"  name="password" placeholder="Password" class="input-field">
+                        <br><br>
+                        <div class="col-md-6 col-md-offset-4">
+                            <input name="login" type="submit" value="Login" class="btn btn-success login-button" />
+                            <br><br>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </form>
+      </div>
+
+      <!-- Create Container for Signup form -->
+      <div class="signup-form-container">
+          <h1>Sign Up Form</h1>
+          <input type="text" placeholder="Username"  id="sign-username" class="input-field">
+          <br><br>
+          <input type="email" placeholder="Email" id="sign-email" class="input-field">
+          <br><br>
+          <input type="password" placeholder="Password" id="sign-password" class="input-field">
+          <br><br>
+          <input type="button" class="signup-button" value="Sign up">
+      </div>
+  </div>
+
+</div>
+{% endblock content %}
